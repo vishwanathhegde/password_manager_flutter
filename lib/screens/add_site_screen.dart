@@ -1,5 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:passwordmanager/screens/home_screen.dart';
 import 'package:passwordmanager/screens/utils/sqlite_services.dart';
 import '../widgets/add_site_model.dart';
 import '../widgets/add_site_textfield.dart';
@@ -50,6 +51,13 @@ class _AddSiteState extends State<AddSite> with Crypt {
   TextEditingController PasswordController = TextEditingController();
   TextEditingController NotesController = TextEditingController();
   Widget build(BuildContext context) {
+    List<TextEditingController> controllers = [
+      URlController,
+      SiteNameController,
+      UserNameController,
+      PasswordController,
+      NotesController
+    ];
     return Scaffold(
       appBar: AppBar(
         title: Row(
@@ -268,7 +276,8 @@ class _AddSiteState extends State<AddSite> with Crypt {
                                           borderRadius:
                                               BorderRadius.circular(0))),
                                   onPressed: () {
-                                    setState(() {});
+                                    controllers
+                                        .forEach((element) => element.clear());
                                   },
                                   child: Text("Clear"),
                                 ),
@@ -334,6 +343,10 @@ class _AddSiteState extends State<AddSite> with Crypt {
                                         "notes": NotesController.text,
                                       });
                                       Navigator.pop(context);
+                                      // Navigator.of(context).pushReplacement(
+                                      // MaterialPageRoute(
+                                      //     builder: (context) => HomeScreen(
+                                      //         userid: widget.userid!))).then((value) => );
                                     });
                                   },
                                   child: Text("update"),

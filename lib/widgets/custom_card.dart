@@ -90,7 +90,7 @@ class _CustomCardState extends State<CustomCard> with Crypt {
                             style: TextStyle(
                                 color: const Color(0xFF0E85FF).withOpacity(0.8),
                                 fontWeight: FontWeight.bold,
-                                fontSize: 20),
+                                fontSize: 15),
                           ),
                           onTap: () async {
                             Fluttertoast.showToast(

@@ -9,8 +9,8 @@ import 'package:passwordmanager/widgets/custom_button.dart';
 import '../screens/utils/crypt.dart';
 
 class SignIn extends StatefulWidget {
-  const SignIn({Key? key}) : super(key: key);
-
+  Function updateIndex;
+  SignIn({required this.updateIndex});
   @override
   State<SignIn> createState() => _SignInState();
 }
@@ -55,8 +55,18 @@ class _SignInState extends State<SignIn> with MobileValidation, Crypt {
               callBack: (value) {
                 return MpinValidator(value);
               }),
+          Container(
+            margin: EdgeInsets.only(left: 20),
+            child: InkWell(
+                child: Text(
+                  "Forgot password?",
+                ),
+                onTap: () {
+                  widget.updateIndex();
+                }),
+          ),
           CustomWhiteButton(
-              text: "Log In",
+              text: "Sign In",
               onPressed: () async {
                 if (formKey.currentState!.validate()) {
                   String respone = await DatabaseService.instance.getUserByData(
@@ -95,6 +105,28 @@ class _SignInState extends State<SignIn> with MobileValidation, Crypt {
                   }
                 }
               }),
+          const SizedBox(
+            height: 25,
+          ),
+          Center(
+            child: Image.asset(
+              'images/fingerprint.png',
+            ),
+          ),
+          const SizedBox(
+            height: 15,
+          ),
+          Row(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              Text("OR"),
+              SizedBox(
+                width: 15,
+              ),
+              Text("USE YOUR FINGERPRINT TO LOGIN",
+                  style: Theme.of(context).textTheme.bodyText1),
+            ],
+          ),
         ],
       ),
     );

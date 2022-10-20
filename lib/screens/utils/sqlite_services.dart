@@ -45,7 +45,6 @@ class DatabaseService {
 
     final result =
         await db.rawQuery('SELECT * FROM Site WHERE userid=${userid}');
-    print("Site is ${result}");
     return result.length > 0
         ? result.map((json) => Site.fromJson(json)).toList()
         : [];
@@ -56,6 +55,15 @@ class DatabaseService {
 
     final result = await db.rawQuery(
         'SELECT * FROM Site WHERE userid=${userid} AND sector=\'${filter}\'');
+    return result.length > 0
+        ? result.map((json) => Site.fromJson(json)).toList()
+        : [];
+  }
+
+  Future<List<Site>> getSiteFilterLike(int userid, String search) async {
+    final db = await instance.database;
+    final result = await db.rawQuery(
+        "SELECT * FROM Site WHERE userid=${userid} AND siteName LIKE '%${search}%'");
     print("Site is ${result}");
     return result.length > 0
         ? result.map((json) => Site.fromJson(json)).toList()

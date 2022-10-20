@@ -99,7 +99,14 @@ class _AuthenticationState extends State<Authentication> {
                           ),
                           IndexedStack(
                             index: index,
-                            children: [SignIn(), SignUp()],
+                            children: [
+                              SignIn(updateIndex: () {
+                                setState(() {
+                                  index = 1;
+                                });
+                              }),
+                              SignUp()
+                            ],
                           )
                         ],
                       ),

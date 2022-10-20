@@ -9,6 +9,7 @@ ThemeData getThemeData() {
       headline5: TextStyle(color: Colors.black, fontSize: 26),
       bodyText2: TextStyle(
           fontSize: 20, color: Colors.white, fontWeight: FontWeight.bold),
+      bodyText1: TextStyle(fontSize: 15, color: Colors.white),
     ),
     inputDecorationTheme: InputDecorationTheme(
       fillColor: Color.fromRGBO(245, 247, 251, 1),
